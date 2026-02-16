@@ -11,6 +11,12 @@ def main():
     print(f"Screen width: {constants.SCREEN_WIDTH}")
     print(f"Screen height: {constants.SCREEN_HEIGHT}")
 
+    # groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    # group assignment
+    Player.containers = (updatable, drawable)
+
     # set FPS
     clock = pygame.time.Clock()
     dt = 0
@@ -24,8 +30,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
-        player.update(dt)
-        player.draw(screen)
+        updatable.update(dt)
+        for item in drawable:
+            item.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
