@@ -57,8 +57,8 @@ def main():
                 sys.exit()
             for pew in shots:
                 if rock.collides_with(pew):
-                    log_event("asteroid shot")
-                    rock.kill()
+                    log_event("asteroid_shot")
+                    rock.split()
                     pew.kill()
 
         for item in drawable:
