@@ -1,8 +1,10 @@
 import pygame
+import random
 from constants import *
 from logger import log_state
 from player import Player
 from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 
@@ -19,14 +21,18 @@ def main():
     asteroids = pygame.sprite.Group()
     # group assignment
     Player.containers = (updatable, drawable)
-    Asteroid.containers = (updatable, drawable)
+    Asteroid.containers = (updatable, drawable, asteroids)
+    AsteroidField.containers = (updatable)
+
 
     # set FPS
     clock = pygame.time.Clock()
     dt = 0
 
-    # instantiate player
+
+    # instantiate objects
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+    asteroidfield = AsteroidField()
 
     while True:
         log_state()
