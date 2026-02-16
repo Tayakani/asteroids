@@ -51,7 +51,7 @@ class Player(CircleShape):
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
 
-    
+    # pew pew
     def shoot(self):
         if self.shot_cooldown_timer > 0:
             return

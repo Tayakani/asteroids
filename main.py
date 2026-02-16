@@ -40,18 +40,27 @@ def main():
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     asteroidfield = AsteroidField()
 
+    # game loop
     while True:
         log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
         screen.fill("black")
         updatable.update(dt)
+        
         for rock in asteroids:
             if rock.collides_with(player):
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+            for pew in shots:
+                if rock.collides_with(pew):
+                    log_event("asteroid shot")
+                    rock.kill()
+                    pew.kill()
+
         for item in drawable:
             item.draw(screen)
         pygame.display.flip()
